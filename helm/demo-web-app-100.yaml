@@ -8,7 +8,7 @@ metadata:
 spec:
   project: previews
   source:
-    repoURL: https://github.com/laptua/demo-web-app
+    repoURL: https://github.com/carlosaya/demo-web-app
     targetRevision: HEAD
     path: helm/demo-web-app
     helm:
