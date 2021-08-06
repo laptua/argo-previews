@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-web-app-8f482d40
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: previews
+  source:
+    repoURL: https://github.com/laptua/demo-web-app
+    targetRevision: HEAD 
+    path: helm/demo-web-app
+    helm:
+       values: |
+          image: 495526829652.dkr.ecr.ap-southeast-2.amazonaws.com/gai-hackathon/demo-web-app
+          version: 8f482d40
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pr-demo-web-app-8f482d40
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
